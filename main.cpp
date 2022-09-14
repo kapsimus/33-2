@@ -16,25 +16,25 @@ public:
     }
 };
 
-class Subject {
+class BaseObject {
 public:
     virtual void Message() = 0;
 };
 
-class Fish: public Subject {
+class Fish: public BaseObject {
     void Message() override {
         throw FishCaughtException();
     }
 };
 
-class Boot: public Subject {
+class Boot: public BaseObject {
     void Message() override {
         throw BootCaughtException();
     }
 };
 
 int main() {
-    std::shared_ptr<Subject> field[9];
+    std::shared_ptr<BaseObject> field[9];
     std::srand(std::time(nullptr));
     field[std::rand() % 9] = std::make_shared<Fish>();
     int count  = 3;
